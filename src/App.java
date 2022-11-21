@@ -1,9 +1,15 @@
+import javax.management.modelmbean.ModelMBeanAttributeInfo;
+
+import aplicacao.EstadoAplicacao;
+import aplicacao.Motor;
 import aplicacao.UXHelper;
 
 public class App {
     public static void main(String[] args) throws Exception {
         
         UXHelper console = new UXHelper();
+        Motor motorAplicacao;
+
         console.print("Seja bem vindo a Livraria L");
         printarMenu(console);
         Integer option = console.getInt();
@@ -14,23 +20,18 @@ public class App {
             option = console.getInt();
         }
 
-        switch (option) {
-            case 1:
-                console.print("Ver Produtos");
-                break;
-            case 2:
-                console.print("Cadastrar novo Produto");
-                break;
-        
-            default:
-                break;
+
+        motorAplicacao = new Motor(console, option == 1 ? EstadoAplicacao.VENDENDO : EstadoAplicacao.EDITANDO);
+        while(motorAplicacao.estadoDaLoja != EstadoAplicacao.FINALIZADO) {
+            motorAplicacao.proximoPasso();
         }
+        
 
         
     }
 
 
     private static void printarMenu(UXHelper console) {
-        console.print("Selecione uma opção: \n 1- Ver produtos \n 2- Cadastrar novo Produto");
+        console.print("Selecione uma opção: \n[1] - Ver produtos \n[2] - Cadastrar novo Produto");
     }
 }

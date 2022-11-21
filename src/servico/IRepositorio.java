@@ -8,4 +8,5 @@ public interface IRepositorio<T extends Mercadoria> {
     Boolean remover(Integer id);
     T buscar(Integer id);
     List<T> buscarTodos();
+    Integer quantidadeCadastrada();
 }

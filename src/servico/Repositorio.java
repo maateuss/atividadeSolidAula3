@@ -38,5 +38,10 @@ public class Repositorio<T extends Mercadoria> implements IRepositorio<T> {
     public List<T> buscarTodos() {
         return baseFicticia;
     }
+
+    @Override
+    public Integer quantidadeCadastrada() {
+        return baseFicticia.size();
+    }
     
 }
